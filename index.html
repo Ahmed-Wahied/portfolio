@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Wahied — AI &amp; Machine Learning Engineer</title>
+<style>
+  :root{
+    --bg-0:#0a0715;
+    --bg-1:#150e28;
+    --bg-2:#1c1333;
+    --card:#1a1330;
+    --card-border:#2e2350;
+    --pink:#ff4fa3;
+    --violet:#8b5cf6;
+    --cyan:#4fd1ff;
+    --ink:#f1edff;
+    --ink-dim:#9a90bf;
+    --ink-faint:#6b6291;
+    --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 85% 8%, rgba(139,92,246,.20), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 60%, rgba(255,79,163,.10), transparent 55%),
+      var(--bg-0);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  ::selection{background:var(--pink); color:#0a0715;}
+
+  /* ---------- Layout shell ---------- */
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{padding:120px 0;}
+  @media (max-width:720px){
+    section{padding:72px 0;}
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(10,7,21,.72);
+    border-bottom:1px solid rgba(139,92,246,.15);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{
+    font-family:var(--mono); font-weight:600; font-size:15px; letter-spacing:.02em;
+    color:var(--ink);
+  }
+  .brand span{color:var(--pink);}
+  .navlinks{display:flex; gap:36px; font-size:14px; color:var(--ink-dim);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--pink);}
+  @media (max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:800px;
+    display:flex; align-items:center;
+    padding-top:90px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:64px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .eyebrow-line{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:13px; color:var(--cyan);
+    margin-bottom:28px;
+  }
+  .eyebrow-line::before{
+    content:''; width:28px; height:1px; background:var(--cyan); display:block;
+  }
+
+  .hero h1{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(38px, 5.2vw, 64px);
+    line-height:1.08;
+    letter-spacing:-.01em;
+    background:linear-gradient(120deg, #ffffff 30%, var(--pink) 70%, var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .hero .role{
+    font-family:var(--mono);
+    font-size:clamp(16px,2vw,20px);
+    color:var(--violet);
+    margin-top:14px;
+  }
+  .hero .role::before{content:'— '; color:var(--pink);}
+
+  .hero p.tag{
+    margin-top:26px;
+    font-size:18px;
+    color:var(--ink-dim);
+    max-width:46ch;
+  }
+
+  .hero-ctas{
+    display:flex; gap:16px; margin-top:42px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono); font-size:14px; font-weight:600;
+    padding:14px 26px; border-radius:8px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:linear-gradient(120deg, var(--pink), var(--violet));
+    color:#0a0715;
+  }
+  .btn-primary:hover{box-shadow:0 10px 30px -8px rgba(255,79,163,.5);}
+  .btn-ghost{
+    border-color:var(--card-border);
+    color:var(--ink);
+    background:rgba(255,255,255,.02);
+  }
+  .btn-ghost:hover{border-color:var(--pink); color:var(--pink);}
+
+  /* ---------- Hero visual ---------- */
+  .hero-visual{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(160deg, #1a0f33, #050308 75%);
+    border:1px solid rgba(139,92,246,.25);
+    min-height:480px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .hero-visual::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(139,92,246,.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,92,246,.14) 1px, transparent 1px);
+    background-size:34px 34px;
+    mask-image:radial-gradient(ellipse 90% 90% at 50% 20%, black 40%, transparent 90%);
+  }
+  .hero-visual .glow{
+    position:absolute; width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,79,163,.35), transparent 70%);
+    top:-60px; right:-80px; filter:blur(10px);
+  }
+  .hero-photo{
+    position:relative; z-index:2;
+    width:100%; display:flex; justify-content:center;
+    padding-top:24px;
+  }
+  .hero-photo img{
+    max-height:420px; width:auto;
+    filter:drop-shadow(0 0 40px rgba(139,92,246,.55)) drop-shadow(0 0 90px rgba(255,79,163,.25));
+  }
+  .hero-tags{
+    position:relative; z-index:2;
+    padding:20px 26px 26px;
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .hero-tag{
+    font-family:var(--mono); font-size:12px;
+    padding:6px 12px; border-radius:20px;
+    border:1px solid rgba(139,92,246,.4);
+    background:rgba(139,92,246,.08);
+    color:var(--ink-dim);
+  }
+
+  /* ---------- Section headers ---------- */
+  .sec-head{margin-bottom:56px;}
+  .sec-eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--cyan);
+    display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .sec-eyebrow::before{content:''; width:22px; height:1px; background:var(--cyan);}
+  .sec-head h2{
+    font-family:var(--mono); font-weight:700;
+    font-size:clamp(28px,3.4vw,42px);
+    color:var(--ink);
+  }
+  .sec-head h2 em{font-style:normal; color:var(--pink);}
+  .sec-head p{color:var(--ink-dim); margin-top:14px; max-width:60ch; font-size:16px;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:28px;
+  }
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:32px;
+  }
+  .card h3{
+    font-family:var(--mono); font-size:14px; letter-spacing:.02em;
+    color:var(--pink); margin-bottom:16px;
+  }
+  .card p{color:var(--ink-dim); font-size:15px;}
+  .card ul{list-style:none; display:flex; flex-direction:column; gap:14px;}
+  .card ul li{
+    color:var(--ink-dim); font-size:15px; padding-left:20px; position:relative;
+  }
+  .card ul li::before{
+    content:''; position:absolute; left:0; top:8px;
+    width:8px; height:8px; border-radius:2px;
+    background:linear-gradient(120deg, var(--pink), var(--violet));
+  }
+
+  /* ---------- Problem cards ---------- */
+  .problem-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+  }
+  @media (max-width:900px){ .problem-grid{grid-template-columns:1fr;} }
+  .problem-card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-left:3px solid;
+    border-image:linear-gradient(180deg, var(--pink), var(--violet)) 1;
+    border-radius:10px;
+    padding:28px 26px;
+  }
+  .problem-card h4{font-size:17px; margin-bottom:12px; color:var(--ink);}
+  .problem-card p{color:var(--ink-dim); font-size:14.5px;}
+
+  /* ---------- What I build ---------- */
+  .build-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  @media (max-width:900px){ .build-grid{grid-template-columns:1fr;} }
+  .build-card{
+    background:linear-gradient(160deg, rgba(139,92,246,.10), rgba(255,79,163,.04));
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:30px 26px;
+    transition:border-color .2s, transform .2s;
+  }
+  .build-card:hover{border-color:var(--pink); transform:translateY(-4px);}
+  .build-icon{
+    width:44px; height:44px; border-radius:12px;
+    background:linear-gradient(140deg, var(--pink), var(--violet));
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; margin-bottom:20px;
+  }
+  .build-card h4{font-size:18px; margin-bottom:10px;}
+  .build-card p{color:var(--ink-dim); font-size:14.5px;}
+
+  /* ---------- Projects ---------- */
+  .project{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:44px;
+    margin-bottom:28px;
+  }
+  @media (max-width:700px){ .project{padding:28px 22px;} }
+  .project-tag{
+    display:inline-block;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.04em;
+    color:var(--pink);
+    background:rgba(255,79,163,.1);
+    border:1px solid rgba(255,79,163,.3);
+    padding:5px 12px; border-radius:20px;
+    margin-bottom:18px;
+  }
+  .project h3{
+    font-family:var(--mono); font-size:clamp(20px,2.6vw,28px);
+    margin-bottom:26px; color:var(--ink);
+  }
+  .project-body{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
+  @media (max-width:800px){ .project-body{grid-template-columns:1fr;} }
+  .project-block h5{
+    font-family:var(--mono); font-size:12.5px; color:var(--cyan);
+    text-transform:none; margin-bottom:10px; letter-spacing:.02em;
+  }
+  .project-block p{color:var(--ink-dim); font-size:14.5px; margin-bottom:24px;}
+  .project-metrics{display:flex; gap:34px; flex-wrap:wrap; margin-top:6px;}
+  .metric .num{
+    font-family:var(--mono); font-weight:700;
+    font-size:clamp(28px,3vw,36px);
+    background:linear-gradient(120deg, var(--pink), var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .metric .lbl{font-size:12.5px; color:var(--ink-faint); margin-top:4px;}
+  .project-links{margin-top:26px; display:flex; gap:14px;}
+  .project-links a{
+    font-family:var(--mono); font-size:13px; color:var(--ink-dim);
+    border:1px solid var(--card-border); padding:9px 16px; border-radius:7px;
+    transition:.2s;
+  }
+  .project-links a:hover{border-color:var(--pink); color:var(--pink);}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  @media (max-width:800px){ .skills-grid{grid-template-columns:1fr; gap:40px;} }
+  .skills-col h3{
+    font-family:var(--mono); font-size:15px; color:var(--pink);
+    padding-bottom:14px; border-bottom:1px solid var(--card-border); margin-bottom:22px;
+  }
+  .skill-row{
+    padding:14px 0; border-bottom:1px solid rgba(139,92,246,.12);
+    font-size:15px; color:var(--ink-dim);
+  }
+  .skill-row b{color:var(--ink); font-weight:500;}
+
+  /* ---------- Toolkit strip ---------- */
+  .toolkit{display:flex; flex-direction:column; gap:16px;}
+  .tk-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 30px; border-radius:10px;
+    font-family:var(--mono); font-weight:600; font-size:16px;
+    color:#0a0715;
+  }
+  .tk-row span.arrow{font-size:20px;}
+  .tk-1{background:linear-gradient(90deg, #ff2f92, #ff6bb5); width:78%;}
+  .tk-2{background:linear-gradient(90deg, #ff5aa8, #ff8dc4); width:88%;}
+  .tk-3{background:linear-gradient(90deg, #ff86c1, #ffb3d9); width:100%;}
+  @media (max-width:700px){
+    .tk-1,.tk-2,.tk-3{width:100%;}
+  }
+
+  /* ---------- Background timeline ---------- */
+  .timeline{position:relative; padding-left:34px;}
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(180deg, var(--pink), var(--violet));
+  }
+  .tl-item{position:relative; padding-bottom:38px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-34px; top:4px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--pink); box-shadow:0 0 0 4px rgba(255,79,163,.18);
+  }
+  .tl-item h4{font-size:17px; margin-bottom:6px;}
+  .tl-item p{color:var(--ink-dim); font-size:14.5px;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:44px;}
+  @media (max-width:700px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-item{
+    display:flex; align-items:center; gap:18px;
+    padding:22px 24px; border-radius:12px;
+    background:var(--card); border:1px solid var(--card-border);
+    transition:.2s;
+  }
+  .contact-item:hover{border-color:var(--pink); transform:translateY(-3px);}
+  .c-icon{
+    width:44px; height:44px; flex:none; border-radius:10px;
+    background:linear-gradient(140deg, var(--pink), var(--violet));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .c-icon svg{width:20px; height:20px; fill:#0a0715;}
+  .contact-item .clabel{font-size:12px; color:var(--ink-faint); font-family:var(--mono);}
+  .contact-item .cvalue{font-size:15px; color:var(--ink); margin-top:2px; word-break:break-word;}
+
+  .cta-banner{
+    margin-top:54px; text-align:center;
+    padding:52px 24px;
+    border-radius:18px;
+    background:linear-gradient(135deg, rgba(255,79,163,.12), rgba(139,92,246,.14));
+    border:1px solid rgba(139,92,246,.3);
+  }
+  .cta-banner p{color:var(--ink-dim); margin-top:12px; margin-bottom:28px;}
+
+  footer{
+    text-align:center; padding:40px 0 60px;
+    font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+  }
+  footer .pink{color:var(--pink);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Ahmed<span>.</span>Wahied</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn btn-ghost" style="padding:10px 18px; font-size:13px;">Let's Talk</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line">AI &amp; MACHINE LEARNING ENGINEER</div>
+      <h1>Turning Business<br>Data Into Predictive<br>Decisions</h1>
+      <p class="role">Ahmed Wahied</p>
+      <p class="tag">I build and deploy machine learning models that solve real business problems — from predicting customer behavior to automating classification tasks. Not just notebooks. Working tools your business can actually use.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary">View My Projects</a>
+        <a href="#contact" class="btn btn-ghost">Start a Conversation</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="glow"></div>
+      <div class="hero-photo">
+        <img src="ahmed_photo_no_background.png" alt="Ahmed Wahied">
+      </div>
+      <div class="hero-tags">
+        <span class="hero-tag">◆ Machine Learning</span>
+        <span class="hero-tag">◆ Data Science</span>
+        <span class="hero-tag">◆ AI Solutions</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">01 / ABOUT</div>
+      <h2>Who <em>I Am</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="card">
+        <h3>WHO I AM</h3>
+        <p>AI &amp; Machine Learning Engineer specializing in end-to-end ML solutions — from raw data to deployed product. I focus on the full lifecycle: cleaning data, engineering features, training and tuning models, and deploying working solutions — not just notebooks that sit unused.</p>
+      </div>
+      <div class="card">
+        <h3>HOW I WORK</h3>
+        <ul>
+          <li>Full lifecycle: data cleaning, EDA, feature engineering, model tuning, and deployment</li>
+          <li>Work best with small businesses and startups who need practical, explainable ML</li>
+          <li>Deliver working tools — not academic notebooks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">02 / THE PROBLEM</div>
+      <h2>The Problem <em>You're Solving</em></h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <h4>Data Without Direction</h4>
+        <p>Businesses sit on mountains of data but can't predict what comes next — leaving revenue and opportunity on the table.</p>
+      </div>
+      <div class="problem-card">
+        <h4>Off-the-Shelf Doesn't Fit</h4>
+        <p>Generic tools weren't built for your specific problem, your data, or your customers. You need something tailored.</p>
+      </div>
+      <div class="problem-card">
+        <h4>You Need Working Solutions</h4>
+        <p>Not academic notebooks. Not proof-of-concepts. Deployed, usable tools your team can act on immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I BUILD -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">03 / CAPABILITIES</div>
+      <h2>What <em>I Build</em></h2>
+    </div>
+    <div class="build-grid">
+      <div class="build-card">
+        <div class="build-icon">📈</div>
+        <h4>Predictive Models</h4>
+        <p>Anticipate customer behavior, churn, or risk before it happens.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-icon">⚙</div>
+        <h4>Classification Systems</h4>
+        <p>Automate decisions at scale with high-accuracy classification pipelines.</p>
+      </div>
+      <div class="build-card">
+        <div class="build-icon">🚀</div>
+        <h4>Deployed Tools</h4>
+        <p>Gradio, Flask, FastAPI, Streamlit — your team can use it immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">04 / CASE STUDIES</div>
+      <h2>Featured <em>Projects</em></h2>
+    </div>
+
+    <div class="project">
+      <span class="project-tag">CASE STUDY</span>
+      <h3>Project 1: Hotel Booking Cancellations</h3>
+      <div class="project-body">
+        <div>
+          <div class="project-block">
+            <h5>THE PROBLEM</h5>
+            <p>Hotels lose significant revenue to unpredictable cancellations — a pattern that's hard to act on without a model.</p>
+          </div>
+          <div class="project-block">
+            <h5>THE SOLUTION</h5>
+            <p>Compared 7 classification algorithms and deployed the best-performing model as an interactive web application.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Ahmed-Wahied/Hotel-Booking-Cancellation-Prediction" target="_blank">View GitHub →</a>
+          </div>
+        </div>
+        <div>
+          <h5 style="font-family:var(--mono); font-size:12.5px; color:var(--cyan); margin-bottom:18px;">RESULTS</h5>
+          <div class="project-metrics">
+            <div class="metric"><div class="num">83.2%</div><div class="lbl">Accuracy</div></div>
+            <div class="metric"><div class="num">80.8%</div><div class="lbl">Recall</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <span class="project-tag">CASE STUDY</span>
+      <h3>Project 2: Health Risk Classification</h3>
+      <div class="project-body">
+        <div>
+          <div class="project-block">
+            <h5>THE PROBLEM</h5>
+            <p>Early identification of high-risk individuals from health data — where missing a case has real consequences.</p>
+          </div>
+          <div class="project-block">
+            <h5>THE SOLUTION</h5>
+            <p>Applied rigorous preprocessing, normalization, and class-imbalance handling to build a reliable risk classifier.</p>
+          </div>
+        </div>
+        <div>
+          <h5 style="font-family:var(--mono); font-size:12.5px; color:var(--cyan); margin-bottom:18px;">RESULTS</h5>
+          <div class="project-metrics">
+            <div class="metric"><div class="num">94.6%</div><div class="lbl">Recall</div></div>
+            <div class="metric"><div class="num">96.4%</div><div class="lbl">F1-Score</div></div>
+            <div class="metric"><div class="num">93.3%</div><div class="lbl">Accuracy</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <span class="project-tag">CASE STUDY</span>
+      <h3>Project 3: Spam &amp; Message Classification</h3>
+      <div class="project-body">
+        <div>
+          <div class="project-block">
+            <h5>THE PROBLEM</h5>
+            <p>Manual filtering doesn't scale with message volume — moderation, routing, and spam detection need automation.</p>
+          </div>
+          <div class="project-block">
+            <h5>THE SOLUTION</h5>
+            <p>Built a full NLP pipeline: text cleaning, tokenization, vectorization, and classification — generalizes to moderation, routing, and filtering use cases.</p>
+          </div>
+        </div>
+        <div>
+          <h5 style="font-family:var(--mono); font-size:12.5px; color:var(--cyan); margin-bottom:18px;">RESULTS</h5>
+          <div class="project-metrics">
+            <div class="metric"><div class="num">81%</div><div class="lbl">Accuracy</div></div>
+            <div class="metric"><div class="num">83.7%</div><div class="lbl">F1-Score</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">05 / TOOLKIT</div>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skills-col">
+        <h3>TECHNICAL SKILLS</h3>
+        <div class="skill-row"><b>Python</b> · SQL · C++</div>
+        <div class="skill-row"><b>Pandas</b> · NumPy · Scikit-Learn</div>
+        <div class="skill-row"><b>XGBoost</b> · LightGBM · Random Forest</div>
+        <div class="skill-row"><b>Data Cleaning</b> · EDA · Preprocessing</div>
+        <div class="skill-row"><b>Feature Engineering</b></div>
+        <div class="skill-row"><b>Model Evaluation &amp; Tuning</b> · Cross-Validation</div>
+        <div class="skill-row"><b>Data Visualization</b> — Matplotlib, Seaborn</div>
+        <div class="skill-row"><b>Deployment</b> — Flask, FastAPI, Streamlit, Gradio</div>
+        <div class="skill-row" style="border-bottom:none;"><b>Git &amp; GitHub</b></div>
+      </div>
+      <div class="skills-col">
+        <h3>SOFT SKILLS</h3>
+        <div class="skill-row">Clear &amp; Concise Communication</div>
+        <div class="skill-row">Effective Time Management</div>
+        <div class="skill-row">Teamwork &amp; Collaboration</div>
+        <div class="skill-row">Analytical Thinking</div>
+        <div class="skill-row">Problem-Solving</div>
+        <div class="skill-row">Initiative-Taking</div>
+        <div class="skill-row" style="border-bottom:none;">Attention to Detail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKIT FLOW -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">06 / WORKFLOW</div>
+      <h2>My <em>Toolkit</em></h2>
+      <p>Every project moves through the full stack — from raw data to a deployed tool your team can use.</p>
+    </div>
+    <div class="toolkit">
+      <div class="tk-row tk-1"><span>Data Prep</span><span class="arrow">→</span></div>
+      <div class="tk-row tk-2"><span>Modeling</span><span class="arrow">→</span></div>
+      <div class="tk-row tk-3"><span>Deployment</span><span class="arrow">→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BACKGROUND -->
+<section id="background">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">07 / CREDENTIALS</div>
+      <h2>Background <em>&amp; Training</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>B.Sc. in Artificial Intelligence</h4>
+        <p>Benha University — Expected 2027</p>
+      </div>
+      <div class="tl-item">
+        <h4>HCCDA-AI Certification</h4>
+        <p>Huawei Certified Cloud Developer Associate – AI</p>
+      </div>
+      <div class="tl-item">
+        <h4>Machine Learning Summer Training</h4>
+        <p>NTI / ITIDA</p>
+      </div>
+      <div class="tl-item">
+        <h4>Machine Learning Track</h4>
+        <p>Digital Pioneers Initiative (DEPI)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">08 / GET IN TOUCH</div>
+      <h2>Let's Turn Your<br><em>Data Into Decisions</em></h2>
+      <p>Book a 15-minute discovery call to discuss your prediction or classification problem.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-item" href="https://wa.me/201127277639" target="_blank">
+        <div class="c-icon"><svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></div>
+        <div><div class="clabel">WHATSAPP</div><div class="cvalue">+20 1127277639</div></div>
+      </a>
+      <a class="contact-item" href="mailto:wahiedahmed627@gmail.com">
+        <div class="c-icon"><svg viewBox="0 0 512 512"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L246.4 302c5.9 4.6 13.3 4.6 19.2 0L512 150.1V128c0-8.8-7.2-16-16-16H64zM48 176.5V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V176.5L281.6 328.4c-15.5 12.2-37.7 12.2-53.2 0L48 176.5zM0 128C0 92.7 28.7 64 64 64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/></svg></div>
+        <div><div class="clabel">EMAIL</div><div class="cvalue">wahiedahmed627@gmail.com</div></div>
+      </a>
+      <a class="contact-item" href="https://linkedin.com/in/ahmed-wahied" target="_blank">
+        <div class="c-icon"><svg viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zm-46.44-341C24.09 107 0 82.85 0 53.19a53.19 53.19 0 0 1 106.38 0c0 29.66-24.1 53.81-53.94 53.81zM447.9 448h-92.68V302.4c0-34.7-.7-79.3-48.29-79.3-48.29 0-55.7 37.7-55.7 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.28 61.9 111.28 142.3z"/></svg></div>
+        <div><div class="clabel">LINKEDIN</div><div class="cvalue">linkedin.com/in/ahmed-wahied</div></div>
+      </a>
+      <a class="contact-item" href="https://github.com/Ahmed-Wahied" target="_blank">
+        <div class="c-icon"><svg viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></div>
+        <div><div class="clabel">GITHUB</div><div class="cvalue">github.com/Ahmed-Wahied</div></div>
+      </a>
+    </div>
+
+    <div class="cta-banner">
+      <h2 style="font-family:var(--mono); font-size:clamp(22px,3vw,32px);">Ready to turn your data into decisions?</h2>
+      <p>Let's connect and explore how predictive models can support your next move.</p>
+      <a href="mailto:wahiedahmed627@gmail.com" class="btn btn-primary">Book a Discovery Call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="pink">◆</span> Ahmed Wahied — AI &amp; Machine Learning Engineer — Built from scratch, no template
+</footer>
+
+</body>
+</html>
